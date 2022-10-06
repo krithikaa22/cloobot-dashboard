@@ -1,0 +1,50 @@
+<div class="dashboard-modal">
+    <div class="edit-dashboard-flex">
+        <input type="text" placeholder="Page Name" [(ngModel)] = "newPageName">
+        <button (click)="addNewPage()">+ New Page</button>
+    </div>
+    <div class="modal-main-flex">
+        <div class="modal-left-flex">
+            <textarea placeholder="Description"  [(ngModel)] = "newPageDesp"></textarea>
+            <h2>Sections</h2>
+            <nz-list nzBordered  class="dashboard-list section">
+                <nz-list-item *ngFor="let i of page.section" id="{{i.name}}" (click)="showSection($event)">
+                  <span nz-typography>{{i.name}}</span>
+                </nz-list-item>
+              </nz-list>
+              <button (click)="openAddSection()">+ Add Section</button>
+        </div>
+        <div class="modal-right-flex" id="add-section">
+            <input type="text" placeholder="New Section Name" [(ngModel)] = "newSectionName">
+            <h2>Views</h2>
+            <nz-list nzBordered  class="dashboard-list view">
+                <nz-list-item *ngFor="let i of sectionView">
+                  <span nz-typography>{{i.type_val}}</span>
+                </nz-list-item>
+              </nz-list>
+             <div class="view-add">
+                <select name="Views" id="view" aria-placeholder="select view name" [(ngModel)] = "newView">
+                    <option value="">Select view name</option>
+                    <option [value]="i.type_val" *ngFor="let i of view">{{i.type_val}}</option>
+                </select>
+                <button (click)="addView()">Add</button>
+             </div>
+             <h2 class="widget-title">Widgets</h2>
+             <nz-list nzBordered  class="dashboard-list widget">
+                 <nz-list-item *ngFor="let i of sectionWidget">
+                   <span nz-typography>{{i.type_val}}</span>
+                   
+                 </nz-list-item>
+               </nz-list>
+               <div class="view-add">
+                <select name="Views" id="view" aria-placeholder="select view name" [(ngModel)] = "newWidget">
+                    <option value="">Select view name</option>
+                    <option value="{{i.type_val}}" *ngFor="let i of widget">{{i.type_val}}</option>
+                </select>
+                <button (click)="addWidget()">Add</button>
+             </div>
+             <button (click)="addSection()">Done</button>
+        </div>
+    </div>
+    <span antIcon type="ant-cloud" theme="fill"></span>
+</div>

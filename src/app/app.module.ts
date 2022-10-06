@@ -1,16 +1,40 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditDashboardComponent } from './edit-dashboard/edit-dashboard.component';
+import { EditModalComponent } from './edit-modal/edit-modal.component'; 
+
+import { IconModule } from '@ant-design/icons-angular';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    EditDashboardComponent,
+    EditModalComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    NzCardModule,
+    FormsModule,
+    NzDropDownModule,
+    NzMenuModule,
+    NzListModule,
+    IconModule, 
+    NzSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

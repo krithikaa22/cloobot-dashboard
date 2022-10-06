@@ -1,0 +1,17 @@
+<h1 class="dashboard-heading">Dream Dashboard</h1>
+<div class="main-dashboard-div">
+    <div>
+        <input type="text" placeholder="Search" [(ngModel)]="search" (ngModelChange)="filterData()">
+    </div>
+<nz-card>
+    <div nz-card-grid [ngStyle]="gridStyle" *ngFor="let data of grid_filterd_list">
+        <p>{{data.page_name}}</p>
+        <img [attr.src]="data.thumbnail_image" width="100%" height="auto" alt="hi">
+    </div>
+    
+    
+  </nz-card>
+
+
+
+</div>

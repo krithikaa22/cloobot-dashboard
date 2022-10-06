@@ -1,0 +1,95 @@
+.edit-dashboard-flex button, .modal-left-flex button, .modal-right-flex button{
+    width: fit-content;
+    background-color: rgb(48, 48, 193);
+    color: white;
+    padding: 0.5vw;
+    font-size: 1vw;
+    border: none;
+    border-radius: 10px;
+}
+.edit-dashboard-flex{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.edit-dashboard-flex input,  .modal-left-flex textarea, .modal-right-flex input{
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.119);
+    border: none;
+    border-radius: 10px;
+    width: 80%;
+    padding: 0.5vw;
+    font-size: 1vw;
+}
+.dashboard-modal{
+    padding: 1.5vw;
+}
+
+.modal-main-flex{
+    display: flex;
+    justify-content: space-between;
+}
+.modal-left-flex, .modal-right-flex{
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+.modal-right-flex{
+    display: none;
+}
+
+.ant-list-items{
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.119);
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    padding: 0.5vw;
+}
+
+.dashboard-list{
+    min-height: 30vh !important;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.119);
+    border: none;
+    border-radius: 10px;
+
+}
+
+.modal-right-flex .dashboard-list{
+    min-height: 20vh !important;
+}
+
+.modal-left-flex button,.modal-right-flex button
+{
+    margin: auto;
+    margin-top: 4vh;
+}
+.modal-left-flex textarea{
+    margin-top: 4vh;
+    width: 100%;
+    margin-bottom: 4vh;
+    height: 15vh;
+}
+.modal-right-flex input{
+    margin-top: 4vh;
+    width: 100%;
+    margin-bottom: 4vh;
+}
+
+.widget-title{
+    margin-top: 4vh;
+}
+
+select{
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.119);
+    border: none;
+    border-radius: 10px;
+    width: 50%;
+    padding: 0.5vw;
+    margin-top: 4vh;
+}
+
+.view-add{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
