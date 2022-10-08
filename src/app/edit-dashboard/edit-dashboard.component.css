@@ -42,3 +42,7 @@
 .edit-dashboard-card-menu{
     width: 40%;
 }
+
+.ant-card-hoverable{
+    margin: 1vw;
+}

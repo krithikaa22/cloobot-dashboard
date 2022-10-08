@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NzCardModule } from 'ng-zorro-antd/card';
 
 @Component({
@@ -8,7 +9,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   gridStyle = {
     width: '25%',
@@ -517,6 +518,11 @@ export class DashboardComponent implements OnInit {
     })
     console.log(this.grid_filterd_list)
   }
+
+  manage = () => {
+    this.router.navigate(['/edit'])
+  }
+
   ngOnInit(): void {
   }
 

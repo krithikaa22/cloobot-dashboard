@@ -1,4 +1,7 @@
-<h1 class="dashboard-heading">Dream Dashboard</h1>
+<div class="main-dashboard-header">
+    <h1 class="dashboard-heading">Dream Dashboard</h1>
+    <button (click)="manage()">Manage Dashboaed</button>
+</div>
 <div class="main-dashboard-div">
     <div>
         <input type="text" placeholder="Search" [(ngModel)]="search" (ngModelChange)="filterData()">

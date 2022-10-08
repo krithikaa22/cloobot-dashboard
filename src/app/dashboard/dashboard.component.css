@@ -1,3 +1,21 @@
+.main-dashboard-header{
+    display: flex;
+    flex-direction: row;
+    margin-right: 2.5vw;
+    justify-content: space-between;
+}
+.main-dashboard-header button{
+    width: fit-content;
+    background-color: rgb(48, 48, 193);
+    color: white;
+    padding: 0.5vw;
+    font-size: 1vw;
+    height: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
+    border: none;
+}
+
 .main-dashboard-div{
     width: 95vw;
     margin: auto;
@@ -6,7 +24,6 @@
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.119);
 }
 .dashboard-heading{
-    width: 95vw;
     padding: 2vw;
     padding-bottom: 1vw;
     font-size: 2vw;
@@ -19,4 +36,8 @@
     width: 100%;
     padding: 0.5vw;
     font-size: 1vw;
+}
+
+.ant-card-hoverable{
+    margin: 1vw;
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataServiceService } from '../data-service.service';
 
 @Component({
   selector: 'app-edit-dashboard',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private dataService: DataServiceService) { }
 
   gridStyle = {
     width: '25%',
@@ -521,7 +523,22 @@ export class EditDashboardComponent implements OnInit {
   }
 
   edit = (data:any) => {
-    
+    var page = {
+      "name": data?.page_name,
+      "desp": data?.description,
+      "section" : data?.section
+     }
+    console.log(page,data)
+    this.dataService.setPage(page)
+    this.router.navigate(['/modal'])
+  }
+
+  delete = (data:any) => {
+    this.grid_filterd_list = this.grid_filterd_list.filter(e => e.page_name != data.page_name)
+  }
+
+  newPage = () => {
+    this.router.navigate(['/modal'])
   }
 
 }

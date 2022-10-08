@@ -2,16 +2,16 @@
 <div class="main-dashboard-div">
     <div class="edit-dashboard-flex">
         <input type="text" placeholder="Search" [(ngModel)]="search" (ngModelChange)="filterData()">
-        <button>+ New Page</button>
+        <button (click)="newPage()">+ New Page</button>
     </div>
 <nz-card>
     <div class="edit-dashboard-card" nz-card-grid [ngStyle]="gridStyle" *ngFor="let data of grid_filterd_list">
         <p>{{data.page_name}}</p>
         <ul nz-menu nzMode="inline" class="edit-dashboard-card-menu">
-            <li nz-submenu nzTitle="More" nzIcon="mail" >
+            <li nz-submenu nzIcon="mail" >
               <ul>
                     <li nz-menu-item nzSelected (click)="edit(data)">Edit</li>
-                    <li nz-menu-item>Delete</li>
+                    <li nz-menu-item (click)="delete(data)">Delete</li>
               </ul>
             </li>
           </ul>

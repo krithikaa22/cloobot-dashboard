@@ -93,3 +93,8 @@ select{
     display: flex;
     justify-content: space-evenly;
 }
+
+.section, .view, .widget{
+    height: 30vh;
+    overflow-y: scroll;
+}

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { IconDefinition, IconService } from '@ant-design/icons-angular';
 import { DeleteFill } from '@ant-design/icons-angular/icons'
+import { DataServiceService } from '../data-service.service';
 
 @Component({
   selector: 'app-edit-modal',
@@ -128,7 +129,7 @@ export class EditModalComponent implements OnInit {
      ]
    }
 
-  constructor(private _iconService: IconService, private router: Router) {
+  constructor(private _iconService: IconService, private router: Router, private dataService: DataServiceService) {
     this._iconService.addIcon(...[ DeleteFill ]);
     this._iconService.twoToneColor = { primaryColor: '#1890ff' };
    }
@@ -195,6 +196,7 @@ export class EditModalComponent implements OnInit {
  
 
   ngOnInit(): void {
+    this.page = this.dataService.getPage()
     this.newPageName = this.page.name
     this.newPageDesp = this.page.desp
   }
@@ -267,6 +269,26 @@ export class EditModalComponent implements OnInit {
     this.newWidget = ''
     this.page.section = []
     this.isNewPage = true
+  }
+
+  deleteSection = (i:any) => {
+    this.page.section = this.page.section.filter(e => e.name !== i.name)
+  }
+
+  deleteView = (i:any) => {
+    this.sectionView = this.sectionView.filter(e => e.type_val !== i.type_val)
+    this.page.section.map(e => {
+      if(e.name == this.newSectionName)
+        e.view = this.sectionView
+    })
+  }
+
+  deleteWidget = (i:any) => {
+    this.sectionWidget = this.sectionWidget.filter(e => e.type_val !== i.type_val)
+    this.page.section.map(e => {
+      if(e.name == this.newSectionName)
+      e.widget = this.sectionWidget
+    })
   }
 }
 
