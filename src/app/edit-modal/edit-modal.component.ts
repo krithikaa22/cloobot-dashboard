@@ -11,181 +11,15 @@ import { DataServiceService } from '../data-service.service';
   styleUrls: ['./edit-modal.component.css']
 })
 export class EditModalComponent implements OnInit {
-  page = {
-    "name": "Page 1",
-    "desp": "random description",
-    "section" : [
-      {
-        "name": "section 1",
-        "view": [
-          {
-            "type": "form",
-            "type_id": 0,
-            "type_val": "View 1"
-          },
-          {
-            "type": "form",
-            "type_id": 1,
-            "type_val": "View 2"
-          },
-          {
-            "type": "form",
-            "type_id": 2,
-            "type_val": "View 3"
-          }
-        ],
-        "widget": [
-          {
-            "type": "form",
-            "type_id": 0,
-            "type_val": "Widget 1"
-          },
-          {
-            "type": "form",
-            "type_id": 1,
-            "type_val": "Widget 2"
-          },
-          {
-            "type": "form",
-            "type_id": 2,
-            "type_val": "Widget 3"
-          }
-        ]
-      },
-      {
-        "name": "section 3",
-        "view": [
-          {
-            "type": "form",
-            "type_id": 0,
-            "type_val": "View 1"
-          },
-          {
-            "type": "form",
-            "type_id": 1,
-            "type_val": "View 2"
-          },
-          {
-            "type": "form",
-            "type_id": 2,
-            "type_val": "View 3"
-          }
-        ],
-        "widget": [
-          {
-            "type": "form",
-            "type_id": 0,
-            "type_val": "Widget 1"
-          },
-          {
-            "type": "form",
-            "type_id": 1,
-            "type_val": "Widget 2"
-          },
-          {
-            "type": "form",
-            "type_id": 2,
-            "type_val": "Widget 3"
-          }
-        ]
-      },
-      {
-        "name": "section 2",
-        "view": [
-          {
-            "type": "form",
-            "type_id": 0,
-            "type_val": "View 1"
-          },
-          {
-            "type": "form",
-            "type_id": 1,
-            "type_val": "View 2"
-          },
-          {
-            "type": "form",
-            "type_id": 2,
-            "type_val": "View 3"
-          }
-        ],
-        "widget": [
-          {
-            "type": "form",
-            "type_id": 0,
-            "type_val": "Widget 1"
-          },
-          {
-            "type": "form",
-            "type_id": 1,
-            "type_val": "Widget 2"
-          },
-          {
-            "type": "form",
-            "type_id": 2,
-            "type_val": "Widget 3"
-          }
-        ]
-      }
-     ]
-   }
+  page : any
+   view : any
 
-  constructor(private _iconService: IconService, private router: Router, private dataService: DataServiceService) {
-    this._iconService.addIcon(...[ DeleteFill ]);
-    this._iconService.twoToneColor = { primaryColor: '#1890ff' };
-   }
+   widget : any
 
-   view = [
-    {
-      "type": "form",
-      "type_id": 0,
-      "type_val": "View 1"
-    },
-    {
-      "type": "form",
-      "type_id": 1,
-      "type_val": "View 2"
-    },
-    {
-      "type": "form",
-      "type_id": 2,
-      "type_val": "View 3"
-    }
-   ]
+   sectionView : any
+   sectionWidget :any
 
-   widget = [
-    {
-      "type": "form",
-      "type_id": 0,
-      "type_val": "Widget 1"
-    },
-    {
-      "type": "form",
-      "type_id": 1,
-      "type_val": "Widget 2"
-    },
-    {
-      "type": "form",
-      "type_id": 2,
-      "type_val": "Widget 3"
-    }
-   ]
-
-
-   sectionView = [
-    {
-      "type": "form",
-      "type_id": 0,
-      "type_val": ""
-    }
-   ]
-   sectionWidget = [
-    {
-      "type": "form",
-      "type_id": 0,
-      "type_val": ""
-    }
-   ]
-
+   
    newView = ""
    newWidget = ""
    newSectionName = ""
@@ -193,17 +27,35 @@ export class EditModalComponent implements OnInit {
    newPageDesp = ""
    newSections = [{}]
    isNewPage = false
+   addNewSection = false
+
+   constructor(private _iconService: IconService, private router: Router, private dataService: DataServiceService) {
+    this._iconService.addIcon(...[ DeleteFill ]);
+    this._iconService.twoToneColor = { primaryColor: '#1890ff' };
+   }
  
 
   ngOnInit(): void {
     this.page = this.dataService.getPage()
+    this.dataService.dropDownListView().subscribe((res:any)=> {
+      console.log(res.data)
+      this.view = res.data
+    })
+    this.dataService.dropDownListWidget().subscribe((res:any) => {
+      this.widget = res.data
+    })
+    console.log(this.page)
     this.newPageName = this.page.name
     this.newPageDesp = this.page.desp
   }
 
   openAddSection = () => {
+    this.addNewSection = true
     if(document.getElementById("add-section"))
     document.getElementById("add-section")!.style.display = "inline"
+    this.newSectionName = ''
+    this.sectionView = []
+    this.sectionWidget = []
   }
 
   addView = () => {
@@ -213,18 +65,26 @@ export class EditModalComponent implements OnInit {
       "type_val": this.newView
     }
     this.sectionView.push(temp)
+    if(!this.addNewSection){
+      this.page.section.filter((e:any) => e.name == this.newSectionName)[0].view.push(temp)
+    }
   }
 
   addWidget = () => {
+    
     var temp = {
       "type": "form",
       "type_id": this.sectionWidget.length,
       "type_val": this.newWidget
     }
     this.sectionWidget.push(temp)
+    if(!this.addNewSection){
+      this.page.section.filter((e:any) => e.name == this.newSectionName)[0].widget.push(temp)
+    }
   }
 
   addSection = () => {
+    if(this.addNewSection)
     if(!this.isNewPage){
       var newSection = {
         "name": this.newSectionName,
@@ -251,9 +111,10 @@ export class EditModalComponent implements OnInit {
   }
 
   showSection = (event:any) => {
+    this.addNewSection = false
     console.log(event.srcElement.innerText)
     this.newSectionName = event.srcElement.innerText
-    let section = this.page.section.filter((e) => e.name === event.srcElement.innerText)
+    let section = this.page.section.filter((e:any) => e.name === event.srcElement.innerText)
     this.sectionView = section[0].view
     this.sectionWidget = section[0].widget
 
@@ -271,21 +132,25 @@ export class EditModalComponent implements OnInit {
     this.isNewPage = true
   }
 
+  updatePage(){
+    this.router.navigate(['/'])
+  }
+
   deleteSection = (i:any) => {
-    this.page.section = this.page.section.filter(e => e.name !== i.name)
+    this.page.section = this.page.section.filter((e:any) => e.name !== i.name)
   }
 
   deleteView = (i:any) => {
-    this.sectionView = this.sectionView.filter(e => e.type_val !== i.type_val)
-    this.page.section.map(e => {
+    this.sectionView = this.sectionView.filter((e:any) => e.type_val !== i.type_val)
+    this.page.section.map((e:any) => {
       if(e.name == this.newSectionName)
         e.view = this.sectionView
     })
   }
 
   deleteWidget = (i:any) => {
-    this.sectionWidget = this.sectionWidget.filter(e => e.type_val !== i.type_val)
-    this.page.section.map(e => {
+    this.sectionWidget = this.sectionWidget.filter((e:any) => e.type_val !== i.type_val)
+    this.page.section.map((e:any) => {
       if(e.name == this.newSectionName)
       e.widget = this.sectionWidget
     })

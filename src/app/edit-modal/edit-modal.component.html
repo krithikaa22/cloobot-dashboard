@@ -2,7 +2,7 @@
     <div class="edit-dashboard-flex">
         <input type="text" placeholder="Page Name" [(ngModel)] = "newPageName">
         <button (click)="addNewPage()" *ngIf="newPageName == ''">+ New Page</button>
-        <button (click)="addNewPage()" *ngIf="newPageName != ''">Update Page</button>
+        <button (click)="updatePage()" *ngIf="newPageName != ''">Update Page</button>
     </div>
     <div class="modal-main-flex">
         <div class="modal-left-flex">
