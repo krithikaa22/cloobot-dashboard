@@ -98,3 +98,25 @@ select{
     height: 30vh;
     overflow-y: scroll;
 }
+
+@media screen and (max-width: 500px) {
+    .dashboard-modal{
+        padding: 4vw;
+    }
+    .edit-dashboard-flex button, .modal-left-flex button, .modal-right-flex button, .view-add button{
+        font-size: 3vw;
+        padding: 1vw;
+        border-radius: 10px;
+    }
+    .edit-dashboard-flex input, .modal-left-flex textarea, .modal-right-flex input{
+        font-size: 4vw;
+        width: 80vw;
+        padding: 2vw;
+    }
+    .modal-main-flex{
+        flex-direction: column;
+    }
+    .modal-left-flex, .modal-right-flex{
+        width: 80vw;
+    }
+}

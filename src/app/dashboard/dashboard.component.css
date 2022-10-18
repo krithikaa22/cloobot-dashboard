@@ -41,3 +41,24 @@
 .ant-card-hoverable{
     margin: 1vw;
 }
+
+@media screen and (max-width: 500px) {
+    .dashboard-heading{
+        font-size: 7vw;
+    }
+    .main-dashboard-header button{
+        font-size: 2vw;
+        padding: 1.2vw;
+    }
+    .main-dashboard-div input{
+        font-size: 5vw;
+    }
+    .ant-card-hoverable img{
+        height: 25vw;
+        width: auto;
+    }
+    .ant-card-hoverable{
+        width: 100% !important;
+        margin: auto;
+    }
+}
